@@ -13,6 +13,7 @@
     "emulator": "emulator -avd Pixel_2_API_31_Google -no-snapshot"
   },
   "dependencies": {
+    "@react-native-community/hooks": "^2.8.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@reduxjs/toolkit": "^1.8.0",
