@@ -1,0 +1,7 @@
+<resources>
+
+  <style name="Platform.Theme.HackerNews.Api29" parent="Platform.Theme.HackerNews.Api27">
+    <item name="android:enforceStatusBarContrast">false</item>
+    <item name="android:enforceNavigationBarContrast">false</item>
+  </style>
+</resources>

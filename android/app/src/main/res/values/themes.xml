@@ -1,0 +1,26 @@
+<resources>
+
+  <style name="Platform.Theme.HackerNews.NoApi" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--TODO replace with color resource and apply in Compose Theme color-->
+    <item name="android:navigationBarColor">#FF191C1D</item>
+  </style>
+
+  <style name="Platform.Theme.HackerNews.Api27" parent="Platform.Theme.HackerNews.NoApi" />
+
+  <style name="Platform.Theme.HackerNews.Api29" parent="Platform.Theme.HackerNews.Api27" />
+
+  <style name="Platform.HackerNews.Builtor" parent="Platform.Theme.HackerNews.Api29">
+    <item name="android:colorBackground">#FFFBFDFD</item>
+    <item name="android:windowBackground">@android:color/white</item>
+
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:windowLightStatusBar">true</item>
+  </style>
+
+  <!-- Base application theme. -->
+  <style name="HackerNews" parent="Platform.HackerNews.Builtor">
+    <!-- Customize your theme here. -->
+    <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+  </style>
+
+</resources>
