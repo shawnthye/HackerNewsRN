@@ -1,3 +1,5 @@
+// jest.useFakeTimers();
+
 /**
  * @format
  */
