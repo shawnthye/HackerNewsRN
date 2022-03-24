@@ -8,12 +8,16 @@
 - [Bundler](https://bundler.io/) >= 2.3.10 (to make sure everyone has same cocoapods version for this project)
 - Java JDK (Install Android Studio come with JDK, and setup your JAVA_HOME with the JDK come with Android Studio)
 
-> Note: You can install Android Studio via [Jetbrains Toolbox](https://www.jetbrains.com/lp/toolbox/) to easier to manage multiple version of Studio or [The Official Website](https://developer.android.com/studio)
-
 ### Prerequisite installation
 
 - For iOS, follow MacOS [setup instruction](./.docs/SETUP_MACOS.md)
 - For Windows, follow Windows [setup instruction](./.docs/SETUP_WINDOWS.md)
+
+## Install Android Studio
+
+You can install Android Studio via [Jetbrains Toolbox](https://www.jetbrains.com/lp/toolbox/) to easier to manage multiple version of Studio or [The Official Website](https://developer.android.com/studio)
+
+Remember to setup JAVA_HOME and ANDROID_HOME by following the [React-Native Website](https://reactnative.dev/docs/environment-setup)
 
 ## Install Yarn (Ensure you are using Node >= 16.10)
 
