@@ -17,7 +17,7 @@
 
 You can install Android Studio via [Jetbrains Toolbox](https://www.jetbrains.com/lp/toolbox/) to easier to manage multiple version of Studio or [The Official Website](https://developer.android.com/studio)
 
-Remember to setup JAVA_HOME and ANDROID_HOME by following the [React-Native Website](https://reactnative.dev/docs/environment-setup)
+Remember to setup `JAVA_HOME` and `ANDROID_HOME` by following the [React-Native Website](https://reactnative.dev/docs/environment-setup)
 
 ## Install Yarn (Ensure you are using Node >= 16.10)
 
