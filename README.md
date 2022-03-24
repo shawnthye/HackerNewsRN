@@ -23,7 +23,8 @@ corepack enable
 
 ## Initial project
 
+> Just `Yarn`, don't worry about cocoapods if you follow the MacOS setup instruction
+
 ```sh
 yarn
 ```
-> `Yarn` this will be enough, don't worry about cocoapods if you follow the MacOS setup instruction
