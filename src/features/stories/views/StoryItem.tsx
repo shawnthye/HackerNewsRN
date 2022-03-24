@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     ...texts.bodyMedium,
     marginVertical: 8,
   },
-  index: {
+  headerBadge: {
     ...texts.labelSmall,
     alignSelf: 'baseline',
     backgroundColor: colors.surfaceVariant,
     color: colors.onSurfaceVariant,
-    paddingVertical: 1,
-    paddingHorizontal: 4,
-    borderRadius: 4,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    borderRadius: 6,
     marginEnd: 6,
     maxWidth: 260,
   },
@@ -98,7 +98,7 @@ const StoryItem: React.FC<{
           toComments(story.id);
         }
       }}>
-      <Text style={styles.index} numberOfLines={1}>
+      <Text style={styles.headerBadge} numberOfLines={1}>
         {`${index + 1}. `}
         {hostname && (
           <Text
