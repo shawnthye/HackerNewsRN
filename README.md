@@ -8,7 +8,7 @@
 - [Bundler](https://bundler.io/) >= 2.3.10 (to make sure everyone has same cocoapods version for this project)
 - Java JDK (Install Android Studio come with JDK, and setup your JAVA_HOME with the JDK come with Android Studio)
 
-> Note: You can install Android Studio via [Jetbrains Toolbox](https://www.jetbrains.com/lp/toolbox/) you is easier for you to manage multiple version of Studio or the [Official Website](https://developer.android.com/studio)
+> Note: You can install Android Studio via [Jetbrains Toolbox](https://www.jetbrains.com/lp/toolbox/) to easier to manage multiple version of Studio or [The Official Website](https://developer.android.com/studio)
 
 ### Prerequisite installation
 
