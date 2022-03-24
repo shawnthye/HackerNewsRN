@@ -10,6 +10,7 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}",
+    "cleanup": "echo TODO: setup cleanup script for both Windows and Mac",
     "emulator": "emulator -avd Pixel_2_API_31_Google -no-snapshot"
   },
   "dependencies": {
