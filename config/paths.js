@@ -16,4 +16,10 @@ module.exports = {
   appSrc: resolveApp('app'),
   yarnLockFile: resolveApp('yarn.lock'),
   appNodeModules: resolveApp('node_modules'),
+  androidADB: process.env.ANDROID_HOME
+    ? path.resolve(process.env.ANDROID_HOME, 'platform-tools', 'adb')
+    : 'adb',
+  androidEmulator: process.env.ANDROID_HOME
+    ? path.resolve(process.env.ANDROID_HOME, 'emulator', 'emulator')
+    : 'emulator',
 };

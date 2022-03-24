@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 });
 
 const StoryItem: React.FC<{
-  story: Story;
+  story: HackerNewsItem;
   index: number;
   toUrl: ToUrl;
   toHtml: ToHtml;

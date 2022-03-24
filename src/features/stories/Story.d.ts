@@ -1,4 +1,4 @@
-type Story = {
+type HackerNewsItem = {
   /**
    * The item's unique id.
    */
@@ -23,7 +23,7 @@ type Story = {
   /**
    * The comment, story or poll text. HTML.
    */
-  text: string;
+  text: string | undefined;
 
   /**
    * true if the item is dead.
@@ -43,12 +43,12 @@ type Story = {
   /**
    * The ids of the item's comments, in ranked display order.
    */
-  kids: Array<number>;
+  kids: Array<number> | undefined;
 
   /**
    * The URL of the story.
    */
-  url: string;
+  url: string | undefined;
 
   /**
    * The story's score, or the votes for a pollopt.
@@ -58,7 +58,7 @@ type Story = {
   /**
    * The title of the story, poll or job. HTML.
    */
-  title: string;
+  title: string | undefined;
 
   /**
    * A list of related pollopts, in display order.

@@ -48,7 +48,7 @@ const ItemSeparatorComponent = () => {
   return <View style={styles.separator} />;
 };
 
-const keyExtractor = (story: Story) => `${story.id}`;
+const keyExtractor = (story: HackerNewsItem) => `${story.id}`;
 
 const toUrl: ToUrl = async url => {
   if (!(await InAppBrowser.isAvailable())) {
@@ -98,7 +98,7 @@ const StoriesList: React.FC<{
     [navigation],
   );
 
-  const renderItem = React.useCallback<ListRenderItem<Story>>(
+  const renderItem = React.useCallback<ListRenderItem<HackerNewsItem>>(
     ({item, index}) => (
       <StoryItem
         toUrl={toUrl}

@@ -13,7 +13,9 @@ export const HackerNewsClient = {
     return ids;
   },
   getStory: async (id: number) => {
-    const {data: story} = await instance.get<Story>(`/item/${id}.json`);
+    const {data: story} = await instance.get<HackerNewsItem>(
+      `/item/${id}.json`,
+    );
     return story;
   },
 };
