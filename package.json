@@ -7,7 +7,7 @@
     "android": "react-native run-android --no-jetifier",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
-    "test": "jest",
+    "test": "tsc && jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}",
     "clean:all": "jest --clearCache && node scripts/del.js node_modules /tmp/haste-map-react-native-packager-* android/*\\*/build ios/*\\*/build ios/Pods",
@@ -55,6 +55,6 @@
     "yargs": "^17.4.0"
   },
   "resolutions": {
-    "@types/react": "^17"
+    "@types/react": "^17.0.42"
   }
 }
