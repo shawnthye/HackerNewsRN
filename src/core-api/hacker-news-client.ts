@@ -7,15 +7,21 @@ const instance = axios.create({
   timeout: 1000,
 });
 
+const getHackerNewsItem = async (id: number) => {
+  const {data: item} = await instance.get<HackerNewsItem>(`/item/${id}.json`);
+  return item;
+};
+
+const getHackerNewsItemByIds = async (ids: number[]) => {
+  const jobs = ids.map(id => getHackerNewsItem(id));
+  return await Promise.all(jobs);
+};
+
 export const HackerNewsClient = {
   getTopStoriesIds: async () => {
     const {data: ids} = await instance.get<number[]>('/topstories.json');
     return ids;
   },
-  getStory: async (id: number) => {
-    const {data: story} = await instance.get<HackerNewsItem>(
-      `/item/${id}.json`,
-    );
-    return story;
-  },
+  getHackerNewsItem,
+  getHackerNewsItemByIds,
 };

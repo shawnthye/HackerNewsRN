@@ -37,8 +37,8 @@ const generateNextPageToken = (max: number, currentEnd: number) => {
 };
 
 const fetchStoriesByIds = async (ids: number[]) => {
-  const jobs = ids.map(id => HackerNewsClient.getStory(id));
-  return (await Promise.all(jobs)).filter(story => story.type === 'story');
+  const items = await HackerNewsClient.getHackerNewsItemByIds(ids);
+  return items.filter(item => item.type === 'story');
 };
 
 /**
