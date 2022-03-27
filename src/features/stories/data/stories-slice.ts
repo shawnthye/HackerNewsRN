@@ -102,9 +102,9 @@ export const storiesSlice = createSlice({
     builder.addCase(initialStories.fulfilled, (_, action) => {
       return action.payload;
     });
-    builder.addCase(initialStories.rejected, (state, action) => {
+    builder.addCase(initialStories.rejected, state => {
       state.loading = false;
-      console.error(JSON.stringify(action));
+      state.error = true;
     });
     builder.addCase(nextStories.pending, state => {
       state.loading = true;

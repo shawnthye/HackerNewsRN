@@ -1,4 +1,4 @@
-import {generateNextPageToken} from './generateNextPageToken';
+import {generateNextPageToken} from '../generateNextPageToken';
 
 describe('generateNextPageToken', () => {
   it('is has next page', () => {

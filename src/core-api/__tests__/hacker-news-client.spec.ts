@@ -1,7 +1,7 @@
 import {AxiosError} from 'axios';
 import {rest} from 'msw';
 import {setupServer} from 'msw/node';
-import {HackerNewsClient} from './hacker-news-client';
+import {HackerNewsClient} from '../hacker-news-client';
 
 export {};
 
