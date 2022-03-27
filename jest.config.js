@@ -12,5 +12,11 @@ module.exports = {
   ],
   testPathIgnorePatterns: ignorePatterns,
   coveragePathIgnorePatterns: ignorePatterns,
-  coverageReporters: ['text-summary', 'html'],
+  coverageReporters: [
+    // 'clover',
+    //'json',
+    //'lcov',
+    ['text', {skipFull: false}],
+    'html',
+  ],
 };
