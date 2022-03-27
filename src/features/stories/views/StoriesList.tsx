@@ -119,6 +119,8 @@ const StoriesList: React.FC<{
       contentContainerStyle={{
         paddingBottom: insets.bottom,
         paddingTop: insets.top,
+        paddingStart: insets.left,
+        paddingEnd: insets.right,
       }}
       data={stories}
       renderItem={renderItem}

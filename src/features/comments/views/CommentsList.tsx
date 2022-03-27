@@ -75,7 +75,11 @@ const CommentsList = () => {
       onEndReached={setPageTokenCallback}
       contentContainerStyle={[
         styles.contentContainerStyle,
-        {paddingBottom: insets.bottom + 8},
+        {
+          paddingBottom: insets.bottom + 8,
+          paddingStart: insets.left,
+          paddingEnd: insets.right,
+        },
       ]}
       ListHeaderComponentStyle={styles.listHeaderComponentStyle}
       ListHeaderComponent={<Header story={story} />}

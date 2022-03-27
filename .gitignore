@@ -64,3 +64,6 @@ buck-out/
 
 # we use Yarn only, so we can safely ignore and keep the yarn.lock, its not recommended to use both together
 package-lock.json
+
+# jest
+coverage
