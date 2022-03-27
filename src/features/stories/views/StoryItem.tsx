@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     ...texts.bodyMedium,
     marginVertical: 8,
   },
+  created: {
+    ...texts.labelSmall,
+  },
   headerBadge: {
     ...texts.labelSmall,
     alignSelf: 'baseline',
@@ -77,6 +80,26 @@ const styles = StyleSheet.create({
   },
 });
 
+const CommentButton: React.FC<{
+  story: HackerNewsItem;
+  toComments: ToComments;
+}> = ({story, toComments}) => {
+  if (!story.descendants) {
+    return null;
+  }
+
+  return (
+    <RectButton
+      onPress={() => {
+        toComments(story.id);
+      }}
+      style={styles.commentsButton}>
+      <Image source={replies} style={styles.replies} />
+      <Text style={texts.labelSmall}>{`${story.descendants || 0}`}</Text>
+    </RectButton>
+  );
+};
+
 const StoryItem: React.FC<{
   story: HackerNewsItem;
   index: number;
@@ -85,6 +108,8 @@ const StoryItem: React.FC<{
   toComments: ToComments;
 }> = ({index, story, toUrl, toHtml, toComments}) => {
   const hostname = Strings.findHostname(story.url) || story.text;
+
+  const created = Strings.fromTimestamp(story.time);
 
   return (
     <RectButton
@@ -111,6 +136,8 @@ const StoryItem: React.FC<{
         {story.title}
       </Text>
 
+      <Text style={styles.created}>{created}</Text>
+
       <View style={styles.bottomBar}>
         <View style={styles.upvoteBar}>
           <Image source={upvote} style={styles.upvote} />
@@ -121,14 +148,7 @@ const StoryItem: React.FC<{
           </Text>
         </View>
 
-        <RectButton
-          onPress={() => {
-            toComments(story.id);
-          }}
-          style={styles.commentsButton}>
-          <Image source={replies} style={styles.replies} />
-          <Text style={texts.labelSmall}>{`${story.descendants || 0}`}</Text>
-        </RectButton>
+        <CommentButton story={story} toComments={toComments} />
       </View>
     </RectButton>
   );

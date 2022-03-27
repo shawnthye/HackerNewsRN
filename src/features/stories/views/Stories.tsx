@@ -1,6 +1,6 @@
 import React from 'react';
 import {useStoriesInitializer} from '../data/stories-slice';
-import LoadingStoriesIds from './LoadingStoriesIds';
+import InitializingStoriesIds from './InitializingStoriesIds';
 import NoStories from './NoStories';
 import StoriesList from './StoriesList';
 
@@ -8,7 +8,7 @@ const Stories = () => {
   const {loading, isEmpty, refresh} = useStoriesInitializer();
 
   if (loading && isEmpty) {
-    return <LoadingStoriesIds />;
+    return <InitializingStoriesIds />;
   }
 
   if (isEmpty) {

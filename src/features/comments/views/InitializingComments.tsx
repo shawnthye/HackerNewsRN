@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoadingStoriesIds = () => {
+const InitializingComments = () => {
   return (
     <SafeAreaView style={styles.root}>
       <CircularProgress size={'large'} />
@@ -19,4 +19,4 @@ const LoadingStoriesIds = () => {
   );
 };
 
-export default LoadingStoriesIds;
+export default InitializingComments;

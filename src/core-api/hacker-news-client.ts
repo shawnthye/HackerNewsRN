@@ -8,8 +8,13 @@ const instance = axios.create({
 });
 
 const getHackerNewsItem = async (id: number) => {
-  const {data: item} = await instance.get<HackerNewsItem>(`/item/${id}.json`);
-  return item;
+  try {
+    const {data: item} = await instance.get<HackerNewsItem>(`/item/${id}.json`);
+    return item;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 };
 
 const getHackerNewsItemByIds = async (ids: number[]) => {

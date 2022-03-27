@@ -1,11 +1,11 @@
 import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
-import storiesReducer, {
-  storiesSlice,
-} from '../features/stories/data/stories-slice';
+import {commentsSlice} from '../features/comments/data/comments-slice';
+import {storiesSlice} from '../features/stories/data/stories-slice';
 
 const store = configureStore({
   reducer: {
-    [storiesSlice.name]: storiesReducer,
+    [storiesSlice.name]: storiesSlice.reducer,
+    [commentsSlice.name]: commentsSlice.reducer,
   },
 });
 

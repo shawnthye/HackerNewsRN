@@ -4,7 +4,7 @@ import {HackerNewsClient} from '../../../core-api/hacker-news-client';
 import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
 import {RootState} from '../../../core-store/store';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 export interface PageToken {
   start: number;
@@ -41,23 +41,10 @@ const fetchStoriesByIds = async (ids: number[]) => {
   return items.filter(item => item.type === 'story');
 };
 
-/**
- * TODO
- * rename as initialStories
- *
- * First the story ids
- *
- * Fetch the first page and generate pageToken
- */
 export const initialStories = createAsyncThunk<StoriesPagination, void>(
   'stories/create',
   async () => {
     const ids = await HackerNewsClient.getTopStoriesIds();
-
-    // const token: PageToken = {
-    //   start: 0,
-    //   end: Math.min(PAGE_SIZE, ids.length),
-    // };
 
     const end = Math.min(PAGE_SIZE, ids.length);
 
@@ -113,13 +100,6 @@ export const useStoriesInitializer = () => {
     },
   };
 };
-
-// export const fetchStories = createAsyncThunk<Story[], void>(
-//   "stories/fetch",
-//   async (_, { rejectWithValue, getState, dispatch }) => {
-//     return [];
-//   }
-// );
 
 export const storiesSlice = createSlice({
   name: 'stories',

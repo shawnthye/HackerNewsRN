@@ -1,5 +1,5 @@
 type StackParamList = {
   Stories: undefined;
   StoryHtml: {id: number};
-  Comments: undefined;
+  Comments: {storyId: number};
 };

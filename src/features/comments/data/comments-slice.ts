@@ -1,27 +1,32 @@
 import React from 'react';
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {HackerNewsClient} from '../../../core-api/hacker-news-client';
-import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
+import {useAppDispatch} from '../../../core-store/hooks';
 import {RootState} from '../../../core-store/store';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 8;
 
 export interface PageToken {
   start: number;
   end: number;
 }
 
-export interface StoriesPagination {
-  ids: number[];
-  stories: HackerNewsItem[];
+export interface CommentViewState {
+  depth: number;
+  comment: HackerNewsItem;
+}
+
+export interface CommentsViewState {
+  story: HackerNewsItem | undefined;
+  states: CommentViewState[];
   loading: boolean;
   error: boolean;
   nextPageToken: any;
 }
 
-const initialState: StoriesPagination = {
-  ids: [],
-  stories: [],
+const initialState: CommentsViewState = {
+  story: undefined,
+  states: [],
   loading: true,
   error: false,
   nextPageToken: null,
@@ -36,128 +41,165 @@ const generateNextPageToken = (max: number, currentEnd: number) => {
   return max > currentEnd ? nextPageToken : undefined;
 };
 
-const fetchStoriesByIds = async (ids: number[]) => {
-  const items = await HackerNewsClient.getHackerNewsItemByIds(ids);
-  return items.filter(item => item.type === 'story');
+const fetchValidComments = async (ids: number[]): Promise<HackerNewsItem[]> => {
+  const comments = await HackerNewsClient.getHackerNewsItemByIds(ids);
+
+  return comments.filter(comment => !comment.deleted && comment.text);
 };
 
 /**
- * TODO
- * rename as initialStories
- *
- * First the story ids
- *
- * Fetch the first page and generate pageToken
+ * Fetch the all the kids from different parent asynchronous
  */
-export const initialStories = createAsyncThunk<StoriesPagination, void>(
-  'stories/create',
-  async () => {
-    const ids = await HackerNewsClient.getTopStoriesIds();
+const getCommentRecursive = async (
+  ids: number[],
+  depth: number,
+  data: CommentViewState[],
+): Promise<CommentViewState[]> => {
+  let comments = await fetchValidComments(ids);
 
-    // const token: PageToken = {
-    //   start: 0,
-    //   end: Math.min(PAGE_SIZE, ids.length),
-    // };
+  const groupedByParentId = comments.reduce((groups, comment) => {
+    const {parent: parentId} = comment;
+
+    const viewState: CommentViewState = {
+      depth: depth,
+      comment: comment,
+    };
+
+    if (groups.has(parentId)) {
+      groups.get(parentId)!.push(viewState);
+    } else {
+      groups.set(parentId, [viewState]);
+    }
+    return groups;
+  }, new Map<number, CommentViewState[]>());
+
+  groupedByParentId.forEach((viewStates, parentId) => {
+    const pos = data.findIndex(it => it.comment.id === parentId);
+
+    if (pos >= 0) {
+      data.splice(pos + 1, 0, ...viewStates);
+    } else {
+      data.push(...viewStates);
+    }
+  });
+
+  // get All the kid id from different comment
+  const kidIds: number[] = comments
+    .map(it => it.kids)
+    .filter(it => it)
+    .flat() as number[];
+
+  if (kidIds.length) {
+    // we fetch all the nested kids asynchronous
+    return await getCommentRecursive(kidIds, depth + 1, data);
+  } else {
+    // no more kid, we just reurn
+    return data;
+  }
+};
+
+export const initialComments = createAsyncThunk<CommentsViewState, number>(
+  'comments/initial',
+  async (storyId, {getState}) => {
+    const state = getState() as RootState;
+
+    const story = state.stories.stories.find(it => it.id === storyId)!;
+
+    const ids = story.kids as number[];
 
     const end = Math.min(PAGE_SIZE, ids.length);
 
-    const stories = await fetchStoriesByIds(
+    const states = await getCommentRecursive(
       ids.slice(0, Math.min(PAGE_SIZE, ids.length)),
+      0,
+      [],
     );
 
-    const page: StoriesPagination = {
-      ids: ids,
-      stories: stories,
+    const viewState: CommentsViewState = {
+      story: story,
+      states: states,
       loading: false,
       error: false,
       nextPageToken: generateNextPageToken(ids.length, end),
     };
 
-    return page;
+    return viewState;
   },
 );
 
-export const nextStories = createAsyncThunk<HackerNewsItem[], any>(
-  'stories/next',
+export const nextComments = createAsyncThunk<CommentViewState[], any>(
+  'comments/next',
   async (arg: any, {getState}) => {
     const state = getState() as RootState;
 
-    const ids = state.stories.ids;
+    const storyId = state.comments.story?.id!;
+
+    const story = state.stories.stories.find(it => it.id === storyId)!;
+
+    const ids = story.kids!;
     const token = arg as PageToken;
 
-    return await fetchStoriesByIds(ids.slice(token.start, token.end));
+    return await getCommentRecursive(ids.slice(token.start, token.end), 0, []);
   },
 );
 
-export const useStoriesInitializer = () => {
+export const useCommentsInitializer = (storyId: number) => {
   const [loading, setLoading] = React.useState<boolean>(true);
-
-  const ids = useAppSelector(selectNotEmpty);
 
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    dispatch(initialStories()).then(() => {
+    dispatch(initialComments(storyId)).then(() => {
       setLoading(false);
     });
-  }, [dispatch]);
+  }, [dispatch, storyId]);
 
   return {
-    isEmpty: !ids,
-    loading: loading,
+    loading,
     refresh: () => {
       setLoading(true);
-      dispatch(initialStories()).then(() => {
+      dispatch(initialComments(storyId)).then(() => {
         setLoading(false);
       });
     },
   };
 };
 
-// export const fetchStories = createAsyncThunk<Story[], void>(
-//   "stories/fetch",
-//   async (_, { rejectWithValue, getState, dispatch }) => {
-//     return [];
-//   }
-// );
-
-export const storiesSlice = createSlice({
-  name: 'stories',
+export const commentsSlice = createSlice({
+  name: 'comments',
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(initialStories.pending, state => {
+    builder.addCase(initialComments.pending, state => {
       state.loading = true;
     });
-    builder.addCase(initialStories.fulfilled, (_, action) => {
+    builder.addCase(initialComments.fulfilled, (_, action) => {
       return action.payload;
     });
-    builder.addCase(initialStories.rejected, (state, action) => {
+    builder.addCase(initialComments.rejected, (state, action) => {
       state.loading = false;
       console.error(JSON.stringify(action));
     });
-    builder.addCase(nextStories.pending, state => {
+    builder.addCase(nextComments.pending, state => {
       state.loading = true;
     });
-    builder.addCase(nextStories.fulfilled, (state, action) => {
+    builder.addCase(nextComments.fulfilled, (state, action) => {
       state.loading = false;
-      state.stories.push(...action.payload);
+      state.states.push(...action.payload);
       state.nextPageToken = generateNextPageToken(
-        state.ids.length,
+        state.story!.kids!.length,
         state.nextPageToken.end,
       );
     });
   },
 });
 
-export const selectNotEmpty = (state: RootState) => {
-  return state.stories.ids.length >= 1;
-};
+// const selectIsEmpty = (state: RootState) => {
+//   return state.comments.states.length <= 0;
+// };
 
-export const selectStories = (state: RootState) => state.stories;
+export const selectComments = (state: RootState) => state.comments;
 
-export const selectStory = (state: RootState, id: number) => {
-  return state.stories.stories.find(story => story.id === id);
-};
+const commentsReducer = commentsSlice.reducer;
 
-export default storiesSlice.reducer;
+export default commentsReducer;

@@ -5,7 +5,7 @@
 const {spawnSync} = require('child_process');
 const chalk = require('chalk');
 
-const paths = require('./../config/paths');
+const paths = require('../config/paths');
 
 const message = msg => {
   // noinspection JSUnresolvedFunction

@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   },
   separator: {
     flex: 1,
-    height: 1,
-    backgroundColor: 'rgba(0,0,0,.12)',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(0,0,0,.12)',
   },
   footer: {
     paddingVertical: 12,
@@ -87,9 +87,12 @@ const StoriesList: React.FC<{
     dispatch(nextStories(nextPageToken));
   }, [nextPageToken, loading, dispatch]);
 
-  const toComments = React.useCallback<ToComments>(() => {
-    navigation.navigate('Comments');
-  }, [navigation]);
+  const toComments = React.useCallback<ToComments>(
+    (storyId: number) => {
+      navigation.navigate('Comments', {storyId: storyId});
+    },
+    [navigation],
+  );
 
   const toHtml = React.useCallback<ToHtml>(
     id => {

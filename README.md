@@ -7,6 +7,7 @@
 - Ruby == 2.7.4 (only needed for cocoapods on Mac)
 - [Bundler](https://bundler.io/) >= 2.3.10 (to make sure everyone has same cocoapods version for this project)
 - Java JDK (Install Android Studio come with JDK, and setup your JAVA_HOME with the JDK come with Android Studio)
+- Yarn v1 (a.k.a. **classic**)
 
 ### Prerequisite installation
 
@@ -23,6 +24,14 @@ Remember to setup `JAVA_HOME` and `ANDROID_HOME` by following the [React-Native 
 
 ```sh
 corepack enable
+```
+
+Note: If you are Yarn v2+, you will need to fallback to Yarn v1 because we are using `prepare` lifecycle script for `cocoapods`.
+
+Run below comment and delete all related `.yarn*` files in the project
+
+```sh
+yarn set version classic
 ```
 
 ## Initial project
