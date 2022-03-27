@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   created: {
     ...texts.labelSmall,
+    paddingBottom: 4,
   },
   headerBadge: {
     ...texts.labelSmall,

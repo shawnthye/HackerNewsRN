@@ -1,4 +1,4 @@
-const ignorePatterns = ['<rootDir>/.jest/', '<rootDir>/src/core-images'];
+const ignorePatterns = ['<rootDir>/.jest/', '<rootDir>/src/core-images/'];
 module.exports = {
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
@@ -13,10 +13,10 @@ module.exports = {
   testPathIgnorePatterns: ignorePatterns,
   coveragePathIgnorePatterns: ignorePatterns,
   coverageReporters: [
-    // 'clover',
+    'clover',
     //'json',
     //'lcov',
-    ['text', {skipFull: false}],
+    ['text'],
     'html',
   ],
 };

@@ -1,15 +1,14 @@
 import React from 'react';
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {
+  generateNextPageToken,
+  PageToken,
+} from '../../../core-api/generateNextPageToken';
 import {HackerNewsClient} from '../../../core-api/hacker-news-client';
 import {useAppDispatch} from '../../../core-store/hooks';
 import {RootState} from '../../../core-store/store';
 
 const PAGE_SIZE = 8;
-
-export interface PageToken {
-  start: number;
-  end: number;
-}
 
 export interface CommentViewState {
   depth: number;
@@ -30,15 +29,6 @@ const initialState: CommentsViewState = {
   loading: true,
   error: false,
   nextPageToken: null,
-};
-
-const generateNextPageToken = (max: number, currentEnd: number) => {
-  const nextPageToken: PageToken = {
-    start: currentEnd,
-    end: Math.min(currentEnd + PAGE_SIZE, max),
-  };
-
-  return max > currentEnd ? nextPageToken : undefined;
 };
 
 const fetchValidComments = async (ids: number[]): Promise<HackerNewsItem[]> => {
@@ -120,7 +110,7 @@ export const initialComments = createAsyncThunk<CommentsViewState, number>(
       states: states,
       loading: false,
       error: false,
-      nextPageToken: generateNextPageToken(ids.length, end),
+      nextPageToken: generateNextPageToken(ids.length, end, PAGE_SIZE),
     };
 
     return viewState;
@@ -189,6 +179,7 @@ export const commentsSlice = createSlice({
       state.nextPageToken = generateNextPageToken(
         state.story!.kids!.length,
         state.nextPageToken.end,
+        PAGE_SIZE,
       );
     });
   },

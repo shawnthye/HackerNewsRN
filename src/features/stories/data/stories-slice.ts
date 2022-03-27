@@ -1,15 +1,14 @@
 import React from 'react';
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {
+  generateNextPageToken,
+  PageToken,
+} from '../../../core-api/generateNextPageToken';
 import {HackerNewsClient} from '../../../core-api/hacker-news-client';
 import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
 import {RootState} from '../../../core-store/store';
 
 const PAGE_SIZE = 20;
-
-export interface PageToken {
-  start: number;
-  end: number;
-}
 
 export interface StoriesPagination {
   ids: number[];
@@ -25,15 +24,6 @@ const initialState: StoriesPagination = {
   loading: true,
   error: false,
   nextPageToken: null,
-};
-
-const generateNextPageToken = (max: number, currentEnd: number) => {
-  const nextPageToken: PageToken = {
-    start: currentEnd,
-    end: Math.min(currentEnd + PAGE_SIZE, max),
-  };
-
-  return max > currentEnd ? nextPageToken : undefined;
 };
 
 const fetchStoriesByIds = async (ids: number[]) => {
@@ -57,7 +47,7 @@ export const initialStories = createAsyncThunk<StoriesPagination, void>(
       stories: stories,
       loading: false,
       error: false,
-      nextPageToken: generateNextPageToken(ids.length, end),
+      nextPageToken: generateNextPageToken(ids.length, end, PAGE_SIZE),
     };
 
     return page;
@@ -119,14 +109,18 @@ export const storiesSlice = createSlice({
     builder.addCase(nextStories.pending, state => {
       state.loading = true;
     });
-    builder.addCase(nextStories.fulfilled, (state, action) => {
-      state.loading = false;
-      state.stories.push(...action.payload);
-      state.nextPageToken = generateNextPageToken(
-        state.ids.length,
-        state.nextPageToken.end,
-      );
-    });
+    builder.addCase(
+      nextStories.fulfilled,
+      (state, action: PayloadAction<HackerNewsItem[]>) => {
+        state.loading = false;
+        state.stories.push(...action.payload);
+        state.nextPageToken = generateNextPageToken(
+          state.ids.length,
+          state.nextPageToken.end,
+          PAGE_SIZE,
+        );
+      },
+    );
   },
 });
 
