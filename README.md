@@ -1,5 +1,10 @@
 # Hacker News - React Native
 
+## Overview
+
+This project is setup to follow unidirection data flow and single source of truth approach.
+We mainly use `Redux` as well as `TypeScript` for better typed coding.
+
 ### Prerequisite
 
 - [Node](https://nodejs.org/en/) >= 16.10
