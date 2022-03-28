@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import TextButton from '../../../core-components/TextButton';
 
 const styles = StyleSheet.create({
   root: {
@@ -16,13 +17,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const NoStories = () => {
+const ErrorStories: React.FC<{refresh: () => void}> = ({refresh}) => {
   return (
     <SafeAreaView style={styles.root}>
-      <Text style={styles.message}>No stories</Text>
-      <Text style={styles.description}>Please come back again later.</Text>
+      <Text style={styles.message}>Oops! Something went wrong.</Text>
+      <TextButton
+        onPress={() => {
+          refresh();
+        }}
+      />
     </SafeAreaView>
   );
 };
 
-export default NoStories;
+export default ErrorStories;

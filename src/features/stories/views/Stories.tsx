@@ -1,14 +1,19 @@
 import React from 'react';
-import {useStoriesInitializer} from '../data/stories-slice';
+import {useStoriesInitializer} from '../data/useStoriesInitializer';
+import ErrorStories from './ErrorStories';
 import InitializingStoriesIds from './InitializingStoriesIds';
 import NoStories from './NoStories';
 import StoriesList from './StoriesList';
 
 const Stories = () => {
-  const {loading, isEmpty, refresh} = useStoriesInitializer();
+  const {loading, isEmpty, isError, refresh} = useStoriesInitializer();
 
   if (loading && isEmpty) {
     return <InitializingStoriesIds />;
+  }
+
+  if (isError && isEmpty) {
+    return <ErrorStories refresh={refresh} />;
   }
 
   if (isEmpty) {

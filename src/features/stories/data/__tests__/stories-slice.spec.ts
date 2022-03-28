@@ -13,26 +13,23 @@ import {initialStories, storiesSlice} from '../stories-slice';
 //   });
 // });
 
-describe('', () => {
+describe('stories', () => {
+  const ids = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22,
+  ];
+
+  const idHandlers = ids.map(id =>
+    rest.get(`*/item/${id}.json`, (_, res, ctx) => {
+      return res(ctx.status(200), ctx.json({id: id}));
+    }),
+  );
+
   const handlers = [
     rest.get('*/topstories.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json([1, 2, 3, 4, 5]));
+      return res(ctx.status(200), ctx.json(ids));
     }),
-    rest.get('*/item/1.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json({id: 1}));
-    }),
-    rest.get('*/item/2.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json({id: 2}));
-    }),
-    rest.get('*/item/3.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json({id: 3}));
-    }),
-    rest.get('*/item/4.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json({id: 4}));
-    }),
-    rest.get('*/item/5.json', (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json({id: 5}));
-    }),
+    ...idHandlers,
   ];
 
   const server = setupServer(...handlers);

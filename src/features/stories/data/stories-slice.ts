@@ -1,11 +1,9 @@
-import React from 'react';
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {
   generateNextPageToken,
   PageToken,
 } from '../../../core-api/generateNextPageToken';
 import {HackerNewsClient} from '../../../core-api/hacker-news-client';
-import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
 import {RootState} from '../../../core-store/store';
 
 const PAGE_SIZE = 20;
@@ -66,31 +64,6 @@ export const nextStories = createAsyncThunk<HackerNewsItem[], any>(
   },
 );
 
-export const useStoriesInitializer = () => {
-  const [loading, setLoading] = React.useState<boolean>(true);
-
-  const ids = useAppSelector(selectNotEmpty);
-
-  const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    dispatch(initialStories()).then(() => {
-      setLoading(false);
-    });
-  }, [dispatch]);
-
-  return {
-    isEmpty: !ids,
-    loading: loading,
-    refresh: () => {
-      setLoading(true);
-      dispatch(initialStories()).then(() => {
-        setLoading(false);
-      });
-    },
-  };
-};
-
 export const storiesSlice = createSlice({
   name: 'stories',
   initialState: initialState,
@@ -99,9 +72,12 @@ export const storiesSlice = createSlice({
     builder.addCase(initialStories.pending, state => {
       state.loading = true;
     });
-    builder.addCase(initialStories.fulfilled, (_, action) => {
-      return action.payload;
-    });
+    builder.addCase(
+      initialStories.fulfilled,
+      (_, action: PayloadAction<StoriesPagination>) => {
+        return action.payload;
+      },
+    );
     builder.addCase(initialStories.rejected, state => {
       state.loading = false;
       state.error = true;
@@ -123,6 +99,10 @@ export const storiesSlice = createSlice({
     );
   },
 });
+
+export const selectIsError = (state: RootState) => {
+  return state.stories.error;
+};
 
 export const selectNotEmpty = (state: RootState) => {
   return state.stories.ids.length >= 1;

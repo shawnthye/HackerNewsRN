@@ -41,3 +41,8 @@ yarn set version classic
 ```sh
 yarn
 ```
+
+## TODO
+
+- More code coverage
+- Error handling
