@@ -22,6 +22,7 @@ const ErrorStories: React.FC<{refresh: () => void}> = ({refresh}) => {
     <SafeAreaView style={styles.root}>
       <Text style={styles.message}>Oops! Something went wrong.</Text>
       <TextButton
+        text="RETRY"
         onPress={() => {
           refresh();
         }}

@@ -15,10 +15,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextButton: React.FC<RectButtonProps> = ({style, ...props}) => {
+interface TextButtonProps extends RectButtonProps {
+  text: string;
+}
+
+const TextButton: React.FC<TextButtonProps> = ({style, text, ...props}) => {
   return (
     <RectButton {...props} style={[styles.textButton, style]}>
-      <Text style={styles.text}>asd</Text>
+      <Text style={styles.text}>{text}</Text>
     </RectButton>
   );
 };
