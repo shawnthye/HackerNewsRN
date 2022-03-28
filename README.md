@@ -51,5 +51,10 @@ yarn
 
 ## Screenshots
 
+### Android
 <img src="screenshots/android-stories.png" width="320" alt="Stories - Android">
 <img src="screenshots/android-comments.png" width="320" alt="Comments - Android">
+
+### iOS
+<img src="screenshots/ios-stories.png" width="320" alt="Stories - iOS">
+<img src="screenshots/ios-comments.png" width="320" alt="Comments - iOS">

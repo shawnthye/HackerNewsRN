@@ -36,14 +36,6 @@ export const initialStories = createAsyncThunk<StoriesPagination, void>(
 
     const end = Math.min(PAGE_SIZE, ids.length);
 
-    try {
-      const s = await fetchStoriesByIds(
-        ids.slice(0, Math.min(PAGE_SIZE, ids.length)),
-      );
-    } catch (error) {
-      console.log(JSON.stringify(error));
-    }
-
     const stories = await fetchStoriesByIds(
       ids.slice(0, Math.min(PAGE_SIZE, ids.length)),
     );
