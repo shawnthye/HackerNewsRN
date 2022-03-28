@@ -48,13 +48,16 @@ yarn
 - Offline caching for feed
 - Display more friendly error message, such as Offline
 - Display error message when user doing Pull-to-Refresh with some kind of SnackBar pattern
+- Handle error for next page fetching
 
 ## Screenshots
 
 ### Android
+
 <img src="screenshots/android-stories.png" width="320" alt="Stories - Android">
 <img src="screenshots/android-comments.png" width="320" alt="Comments - Android">
 
 ### iOS
+
 <img src="screenshots/ios-stories.png" width="320" alt="Stories - iOS">
 <img src="screenshots/ios-comments.png" width="320" alt="Comments - iOS">
