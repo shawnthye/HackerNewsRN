@@ -48,3 +48,8 @@ yarn
 - Offline caching for feed
 - Display more friendly error message, such as Offline
 - Display error message when user doing Pull-to-Refresh with some kind of SnackBar pattern
+
+## Screenshots
+
+<img src="screenshots/android-stories.png" width="320" alt="Stories - Android">
+<img src="screenshots/android-comments.png" width="320" alt="Comments - Android">
