@@ -4,7 +4,7 @@ export const HACKER_NEWS_BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 
 const instance = axios.create({
   baseURL: HACKER_NEWS_BASE_URL,
-  timeout: 1000,
+  timeout: 30000, // 30 sec
 });
 
 const getHackerNewsItem = async (id: number) => {
