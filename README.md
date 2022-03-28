@@ -45,4 +45,6 @@ yarn
 ## TODO
 
 - More code coverage
-- Error handling
+- Offline caching for feed
+- Display more friendly error message, such as Offline
+- Display error message when user doing Pull-to-Refresh with some kind of SnackBar pattern
