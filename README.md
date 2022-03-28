@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is setup to follow unidirection data flow and single source of truth approach.
+This project is setup to follow Unidirectional Data Flow and Single Source of Truth approach.
 We mainly use `Redux` as well as `TypeScript` for better typed coding.
 
 ### Prerequisite
