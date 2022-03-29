@@ -67,6 +67,8 @@ const toUrl: ToUrl = async url => {
   });
 };
 
+const StoryItemMemo = React.memo(StoryItem);
+
 const StoriesList: React.FC<{
   onRefresh: () => void;
   refreshing: boolean;
@@ -103,7 +105,7 @@ const StoriesList: React.FC<{
 
   const renderItem = React.useCallback<ListRenderItem<HackerNewsItem>>(
     ({item, index}) => (
-      <StoryItem
+      <StoryItemMemo
         toUrl={toUrl}
         toHtml={toHtml}
         toComments={toComments}
