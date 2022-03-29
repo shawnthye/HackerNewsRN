@@ -9,37 +9,35 @@ import {Provider} from 'react-redux';
 import store from '../core-store/store';
 import Navigation from './Navigation';
 
+const STATUS_BAR_COLOR = 'rgba(255,255,255,.60)';
+
 const styles = StyleSheet.create({
   gesture: {
     flex: 1,
   },
-  statusBarTop: {
-    backgroundColor: 'rgba(255,255,255,.60)',
+  statusBar: {
+    backgroundColor: STATUS_BAR_COLOR,
     position: 'absolute',
+  },
+  statusBarTop: {
     width: '100%',
     top: 0,
     start: 0,
     end: 0,
   },
   statusBarBottom: {
-    backgroundColor: 'rgba(255,255,255,.60)',
-    position: 'absolute',
     width: '100%',
     bottom: 0,
     start: 0,
     end: 0,
   },
   statusBarStart: {
-    backgroundColor: 'rgba(255,255,255,0.60)',
-    position: 'absolute',
     height: '100%',
     start: 0,
     top: 0,
     bottom: 0,
   },
   statusBarEnd: {
-    backgroundColor: 'rgba(255,255,255,0.60)',
-    position: 'absolute',
     height: '100%',
     end: 0,
     top: 0,
@@ -53,10 +51,22 @@ const App = () => {
       <GestureHandlerRootView style={styles.gesture}>
         <SafeAreaProvider>
           <Navigation />
-          <SafeAreaView style={styles.statusBarTop} edges={['top']} />
-          <SafeAreaView style={styles.statusBarBottom} edges={['bottom']} />
-          <SafeAreaView style={styles.statusBarStart} edges={['left']} />
-          <SafeAreaView style={styles.statusBarEnd} edges={['right']} />
+          <SafeAreaView
+            style={[styles.statusBar, styles.statusBarTop]}
+            edges={['top']}
+          />
+          <SafeAreaView
+            style={[styles.statusBar, styles.statusBarBottom]}
+            edges={['bottom']}
+          />
+          <SafeAreaView
+            style={[styles.statusBar, styles.statusBarStart]}
+            edges={['left']}
+          />
+          <SafeAreaView
+            style={[styles.statusBar, styles.statusBarEnd]}
+            edges={['right']}
+          />
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </Provider>
