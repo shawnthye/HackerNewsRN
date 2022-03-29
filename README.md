@@ -51,6 +51,7 @@ yarn
 
 - More code coverage
 - Offline caching for feed
+- Handle device offline or Pull-to-Refresh and Next page loading
 - Display more friendly error message, such as Offline
 - Display error message when user doing Pull-to-Refresh with some kind of SnackBar pattern
 - Handle error for next page fetching
