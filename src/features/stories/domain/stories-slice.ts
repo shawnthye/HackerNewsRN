@@ -8,7 +8,7 @@ import {RootState} from '../../../core-store/store';
 
 const PAGE_SIZE = 20;
 
-export interface StoriesPagination {
+export interface StoriesState {
   ids: number[];
   stories: HackerNewsItem[];
   loading: boolean;
@@ -16,7 +16,7 @@ export interface StoriesPagination {
   nextPageToken: any;
 }
 
-const initialState: StoriesPagination = {
+const initialState: StoriesState = {
   ids: [],
   stories: [],
   loading: true,
@@ -29,7 +29,7 @@ const fetchStoriesByIds = async (ids: number[]) => {
   return items.filter(item => item.type === 'story');
 };
 
-export const initialStories = createAsyncThunk<StoriesPagination, void>(
+export const initialStories = createAsyncThunk<StoriesState, void>(
   'stories/create',
   async () => {
     const ids = await HackerNewsClient.getTopStoriesIds();
@@ -40,7 +40,7 @@ export const initialStories = createAsyncThunk<StoriesPagination, void>(
       ids.slice(0, Math.min(PAGE_SIZE, ids.length)),
     );
 
-    const page: StoriesPagination = {
+    const page: StoriesState = {
       ids: ids,
       stories: stories,
       loading: false,
@@ -74,7 +74,7 @@ export const storiesSlice = createSlice({
     });
     builder.addCase(
       initialStories.fulfilled,
-      (_, action: PayloadAction<StoriesPagination>) => {
+      (_, action: PayloadAction<StoriesState>) => {
         return action.payload;
       },
     );

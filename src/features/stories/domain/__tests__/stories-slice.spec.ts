@@ -3,15 +3,15 @@ import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 import {initialStories, storiesSlice} from '../stories-slice';
 
-// test('should handle initial state', () => {
-//   expect(storiesSlice.reducer(undefined, {type: 'unknown'})).toEqual({
-//     ids: [],
-//     stories: [],
-//     loading: true,
-//     error: false,
-//     nextPageToken: null,
-//   });
-// });
+test('should handle initial state', () => {
+  expect(storiesSlice.reducer(undefined, {type: 'unknown'})).toEqual({
+    ids: [],
+    stories: [],
+    loading: true,
+    error: false,
+    nextPageToken: null,
+  });
+});
 
 describe('stories', () => {
   const ids = [
@@ -68,6 +68,6 @@ describe('stories', () => {
 
     const state = store.getState();
 
-    expect(state.stories.ids).toStrictEqual([1, 2, 3, 4, 5]);
+    expect(state.stories.ids).toStrictEqual(ids);
   });
 });
