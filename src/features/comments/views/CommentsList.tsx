@@ -9,7 +9,7 @@ import {
   CommentViewState,
   nextComments,
   selectComments,
-} from '../data/comments-slice';
+} from '../domain/comments-slice';
 import CommentItem from './CommentItem';
 
 const keyExtractor = (state: CommentViewState) => `${state.comment.id}`;

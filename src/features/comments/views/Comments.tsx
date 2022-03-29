@@ -1,7 +1,10 @@
 import React from 'react';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {useAppDispatch} from '../../../core-store/hooks';
-import {initialComments, useCommentsInitializer} from '../data/comments-slice';
+import {
+  initialComments,
+  useCommentsInitializer,
+} from '../domain/comments-slice';
 import CommentsList from './CommentsList';
 import InitializingComments from './InitializingComments';
 

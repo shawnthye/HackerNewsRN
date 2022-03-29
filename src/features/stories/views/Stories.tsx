@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStoriesInitializer} from '../data/useStoriesInitializer';
+import {useStoriesInitializer} from '../domain/useStoriesInitializer';
 import ErrorStories from './ErrorStories';
 import InitializingStoriesIds from './InitializingStoriesIds';
 import NoStories from './NoStories';

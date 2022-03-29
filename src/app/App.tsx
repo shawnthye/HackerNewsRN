@@ -55,6 +55,11 @@ const App = () => {
             style={[styles.statusBar, styles.statusBarTop]}
             edges={['top']}
           />
+
+          {/**
+           * TODO: remove the bottom bar from Android API level < 23,
+           * because the we fallback the dark color on lower api version
+           */}
           <SafeAreaView
             style={[styles.statusBar, styles.statusBarBottom]}
             edges={['bottom']}

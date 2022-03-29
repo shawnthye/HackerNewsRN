@@ -4,7 +4,7 @@ import InAppBrowser from 'react-native-inappbrowser-reborn';
 import RenderHTML, {RenderersProps} from 'react-native-render-html';
 import {colors, texts} from '../../../core-theme';
 import Strings from '../../../core/Strings';
-import {CommentViewState} from '../data/comments-slice';
+import {CommentViewState} from '../domain/comments-slice';
 
 const styles = StyleSheet.create({
   item: {

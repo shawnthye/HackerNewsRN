@@ -7,7 +7,7 @@ import WebView from 'react-native-webview';
 import {useBackHandler} from '@react-native-community/hooks';
 import BackButton from '../../../core-components/BackButton';
 import {useAppSelector} from '../../../core-store/hooks';
-import {selectStory} from '../data/stories-slice';
+import {selectStory} from '../domain/stories-slice';
 
 type RouteProps = RouteProp<StackParamList, 'StoryHtml'>;
 

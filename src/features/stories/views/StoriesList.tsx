@@ -14,7 +14,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import CircularProgress from '../../../core-components/CircularProgress';
 import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
 import {colors} from '../../../core-theme';
-import {nextStories, selectStories} from '../data/stories-slice';
+import {nextStories, selectStories} from '../domain/stories-slice';
 import StoryItem, {ToComments, ToHtml, ToUrl} from './StoryItem';
 
 const styles = StyleSheet.create({

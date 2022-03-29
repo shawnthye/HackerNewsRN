@@ -1,6 +1,6 @@
 import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
-import {commentsSlice} from '../features/comments/data/comments-slice';
-import {storiesSlice} from '../features/stories/data/stories-slice';
+import {commentsSlice} from '../features/comments/domain/comments-slice';
+import {storiesSlice} from '../features/stories/domain/stories-slice';
 
 const store = configureStore({
   reducer: {
