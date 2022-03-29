@@ -5,6 +5,14 @@
 This project is setup to follow Unidirectional Data Flow and Single Source of Truth approach.
 We mainly use `Redux` as well as `TypeScript` for better typed coding.
 
+##### Core consideration
+
+- Edge to Edge screen support
+- Infinite loading pattern on Stories and Comments
+- Redux for View State management and Unidirectional Data Flow
+- Following Clean Architecture principal
+- Use only Hooks and Functional component
+
 ### Prerequisite
 
 - [Node](https://nodejs.org/en/) >= 16.10
