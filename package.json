@@ -2,6 +2,7 @@
   "name": "hackernews",
   "version": "0.0.1",
   "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "prepare": "node scripts/prepare.js",
     "android": "react-native run-android --no-jetifier",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "@react-native-community/hooks": "^2.8.1",
+    "@react-native-community/netinfo": "^8.2.0",
     "@react-navigation/elements": "^1.3.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
