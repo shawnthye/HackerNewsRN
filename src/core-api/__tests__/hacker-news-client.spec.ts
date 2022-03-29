@@ -1,4 +1,3 @@
-import {AxiosError} from 'axios';
 import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 import {HackerNewsClient} from '../hacker-news-client';
@@ -46,10 +45,8 @@ describe('getHackerNewsItem()', () => {
   it('should failed', async () => {
     try {
       await HackerNewsClient.getHackerNewsItem(100);
-    } catch (e) {
-      const error = e as AxiosError;
-
-      expect(error.response?.status).toBe(500);
+    } catch (e: any) {
+      expect(e.message).toBe('Something went wrong. Please try later.');
     }
   });
 });
@@ -64,10 +61,9 @@ describe('getHackerNewsItemByIds()', () => {
   it('should failed', async () => {
     try {
       await HackerNewsClient.getHackerNewsItemByIds([100]);
-    } catch (e) {
+    } catch (e: any) {
       // any error will just throw and exist early for now
-      const error = e as AxiosError;
-      expect(error.response?.status).toBe(500);
+      expect(e.message).toBe('Something went wrong. Please try later.');
     }
   });
 });

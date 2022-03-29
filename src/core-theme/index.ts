@@ -20,6 +20,12 @@ export const colors = {
 };
 
 export const texts = StyleSheet.create({
+  titleLarge: {
+    color: colors.onSurface,
+    lineHeight: 28,
+    fontSize: 22,
+    fontWeight: '400',
+  },
   titleMedium: {
     color: colors.onSurface,
     lineHeight: 24,

@@ -6,7 +6,10 @@ module.exports = {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/.jest/.assets-transformer.js',
   },
-  setupFiles: ['<rootDir>/.jest/react-navigation.setup.js'],
+  setupFiles: [
+    '<rootDir>/.jest/react-navigation.setup.js',
+    '<rootDir>/.jest/react-native-netinfo.setup.js',
+  ],
   transformIgnorePatterns: [
     'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?)/)',
   ],

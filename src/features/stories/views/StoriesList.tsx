@@ -14,7 +14,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import CircularProgress from '../../../core-components/CircularProgress';
 import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
 import {colors} from '../../../core-theme';
-import {nextStories, selectStories} from '../domain/stories-slice';
+import {nextStories, selectState} from '../domain/stories-slice';
 import StoryItem, {ToComments, ToHtml, ToUrl} from './StoryItem';
 
 const styles = StyleSheet.create({
@@ -79,7 +79,7 @@ const StoriesList: React.FC<{
 
   const dispatch = useAppDispatch();
 
-  const {stories, loading, nextPageToken} = useAppSelector(selectStories);
+  const {stories, loading, nextPageToken} = useAppSelector(selectState);
 
   const setPageTokenCallback = React.useCallback(() => {
     if (loading || !nextPageToken) {

@@ -1,3 +1,4 @@
+import NetInfo from '@react-native-community/netinfo';
 import axios from 'axios';
 
 export const HACKER_NEWS_BASE_URL = 'https://hacker-news.firebaseio.com/v0';
@@ -7,9 +8,29 @@ const instance = axios.create({
   timeout: 30000, // 30 sec
 });
 
+/**
+ * DON'T do this!!! Just a simplify version of error handling here
+ *
+ * In real life we need to handle the error in each feature view/redux state,
+ * usually we will have more custom error base on server code
+ */
+const generateError = async (): Promise<Error> => {
+  const {isInternetReachable, isConnected} = await NetInfo.fetch();
+
+  if (!isConnected || !isInternetReachable) {
+    return new Error('Please check your internet connection.');
+  }
+
+  return new Error('Something went wrong. Please try later.');
+};
+
 const getHackerNewsItem = async (id: number) => {
-  const {data: item} = await instance.get<HackerNewsItem>(`/item/${id}.json`);
-  return item;
+  try {
+    const {data: item} = await instance.get<HackerNewsItem>(`/item/${id}.json`);
+    return item;
+  } catch (_) {
+    throw await generateError();
+  }
 };
 
 const getHackerNewsItemByIds = async (ids: number[]) => {
@@ -19,8 +40,12 @@ const getHackerNewsItemByIds = async (ids: number[]) => {
 
 export const HackerNewsClient = {
   getTopStoriesIds: async () => {
-    const {data: ids} = await instance.get<number[]>('/topstories.json');
-    return ids;
+    try {
+      const {data: ids} = await instance.get<number[]>('/topstories.json');
+      return ids;
+    } catch (_) {
+      throw await generateError();
+    }
   },
   getHackerNewsItem,
   getHackerNewsItemByIds,

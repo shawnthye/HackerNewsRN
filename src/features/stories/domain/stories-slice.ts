@@ -13,6 +13,7 @@ export interface StoriesState {
   stories: HackerNewsItem[];
   loading: boolean;
   error: boolean;
+  errorMessage: string | undefined;
   nextPageToken: any;
 }
 
@@ -21,6 +22,7 @@ const initialState: StoriesState = {
   stories: [],
   loading: true,
   error: false,
+  errorMessage: undefined,
   nextPageToken: null,
 };
 
@@ -45,6 +47,7 @@ export const initialStories = createAsyncThunk<StoriesState, void>(
       stories: stories,
       loading: false,
       error: false,
+      errorMessage: undefined,
       nextPageToken: generateNextPageToken(ids.length, end, PAGE_SIZE),
     };
 
@@ -71,20 +74,36 @@ export const storiesSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(initialStories.pending, state => {
       state.loading = true;
+      state.error = false;
+      state.errorMessage = undefined;
     });
+
+    builder.addCase(initialStories.rejected, (state, action) => {
+      state.loading = false;
+      state.error = true;
+      console.warn(JSON.stringify(action));
+      state.errorMessage = action.error?.message;
+    });
+
     builder.addCase(
       initialStories.fulfilled,
       (_, action: PayloadAction<StoriesState>) => {
         return action.payload;
       },
     );
-    builder.addCase(initialStories.rejected, state => {
-      state.loading = false;
-      state.error = true;
-    });
+
     builder.addCase(nextStories.pending, state => {
       state.loading = true;
+      state.errorMessage = undefined;
+      state.error = false;
     });
+
+    builder.addCase(nextStories.rejected, (state, action) => {
+      state.error = true;
+      state.errorMessage = action.error?.message;
+      state.loading = false;
+    });
+
     builder.addCase(
       nextStories.fulfilled,
       (state, action: PayloadAction<HackerNewsItem[]>) => {
@@ -108,7 +127,7 @@ export const selectNotEmpty = (state: RootState) => {
   return state.stories.ids.length >= 1;
 };
 
-export const selectStories = (state: RootState) => state.stories;
+export const selectState = (state: RootState) => state.stories;
 
 export const selectStory = (state: RootState, id: number) => {
   return state.stories.stories.find(story => story.id === id);
