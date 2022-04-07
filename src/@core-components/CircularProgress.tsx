@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, ActivityIndicatorProps} from 'react-native';
-import {colors} from '../core-theme';
+import {colors} from '../@core-theme';
 
 const CircularProgress: React.FC<ActivityIndicatorProps> = props => {
   const internalProps: ActivityIndicatorProps = {

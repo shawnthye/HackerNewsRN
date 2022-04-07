@@ -2,9 +2,9 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {
   generateNextPageToken,
   PageToken,
-} from '../../../core-api/generateNextPageToken';
-import {HackerNewsClient} from '../../../core-api/hacker-news-client';
-import {RootState} from '../../../core-store/store';
+} from '../../../@core-api/generateNextPageToken';
+import {HackerNewsClient} from '../../../@core-api/hacker-news-client';
+import {RootState} from '../../../@core-store/store';
 
 const PAGE_SIZE = 20;
 

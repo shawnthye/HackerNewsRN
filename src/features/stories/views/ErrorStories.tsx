@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import TextButton from '../../../core-components/TextButton';
-import {useAppSelector} from '../../../core-store/hooks';
-import {texts} from '../../../core-theme';
+import TextButton from '../../../@core-components/TextButton';
+import {useAppSelector} from '../../../@core-store/hooks';
+import {texts} from '../../../@core-theme';
 import {selectState} from '../domain/stories-slice';
 
 const styles = StyleSheet.create({

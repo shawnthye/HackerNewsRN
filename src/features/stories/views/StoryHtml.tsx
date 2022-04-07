@@ -5,8 +5,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 import {useBackHandler} from '@react-native-community/hooks';
-import BackButton from '../../../core-components/BackButton';
-import {useAppSelector} from '../../../core-store/hooks';
+import BackButton from '../../../@core-components/BackButton';
+import {useAppSelector} from '../../../@core-store/hooks';
 import {selectStory} from '../domain/stories-slice';
 
 type RouteProps = RouteProp<StackParamList, 'StoryHtml'>;

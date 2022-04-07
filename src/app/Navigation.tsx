@@ -5,8 +5,8 @@ import {
   Theme,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import BackButton from '../core-components/BackButton';
-import {colors} from '../core-theme';
+import BackButton from '../@core-components/BackButton';
+import {colors} from '../@core-theme';
 import Comments from '../features/comments/views/Comments';
 import Stories from '../features/stories/views/Stories';
 import StoryHtml from '../features/stories/views/StoryHtml';

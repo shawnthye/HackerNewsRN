@@ -11,9 +11,9 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import CircularProgress from '../../../core-components/CircularProgress';
-import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
-import {colors} from '../../../core-theme';
+import CircularProgress from '../../../@core-components/CircularProgress';
+import {useAppDispatch, useAppSelector} from '../../../@core-store/hooks';
+import {colors} from '../../../@core-theme';
 import {nextStories, selectState} from '../domain/stories-slice';
 import StoryItem, {ToComments, ToHtml, ToUrl} from './StoryItem';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
+import {useAppDispatch, useAppSelector} from '../../../@core-store/hooks';
 import {initialStories, selectIsError, selectNotEmpty} from './stories-slice';
 
 export const useStoriesInitializer = () => {

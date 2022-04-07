@@ -2,9 +2,9 @@ import React from 'react';
 import {ListRenderItem, StyleSheet, Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import CircularProgress from '../../../core-components/CircularProgress';
-import {useAppDispatch, useAppSelector} from '../../../core-store/hooks';
-import {sizes, texts} from '../../../core-theme';
+import CircularProgress from '../../../@core-components/CircularProgress';
+import {useAppDispatch, useAppSelector} from '../../../@core-store/hooks';
+import {sizes, texts} from '../../../@core-theme';
 import {
   CommentViewState,
   nextComments,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import CircularProgress from '../../../core-components/CircularProgress';
+import CircularProgress from '../../../@core-components/CircularProgress';
 
 const styles = StyleSheet.create({
   root: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {RectButton, RectButtonProps} from 'react-native-gesture-handler';
-import {colors, texts} from '../core-theme';
+import {colors, texts} from '../@core-theme';
 
 const styles = StyleSheet.create({
   textButton: {

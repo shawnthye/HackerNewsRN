@@ -1,10 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
-import {replies} from '../../../core-images/replies';
-import {upvote} from '../../../core-images/upvote';
-import {colors, texts} from '../../../core-theme';
-import Strings from '../../../core/Strings';
+import {replies} from '../../../@core-images/replies';
+import {upvote} from '../../../@core-images/upvote';
+import {colors, texts} from '../../../@core-theme';
+import Strings from '../../../@core/Strings';
 
 export type ToUrl = (url: string) => void;
 export type ToHtml = (id: number) => void;

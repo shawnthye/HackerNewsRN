@@ -2,8 +2,8 @@ import React from 'react';
 import {Linking, StyleSheet, Text, View} from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import RenderHTML, {RenderersProps} from 'react-native-render-html';
-import {colors, texts} from '../../../core-theme';
-import Strings from '../../../core/Strings';
+import {colors, texts} from '../../../@core-theme';
+import Strings from '../../../@core/Strings';
 import {CommentViewState} from '../domain/comments-slice';
 
 const styles = StyleSheet.create({
