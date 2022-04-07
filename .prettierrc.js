@@ -1,9 +1,10 @@
 module.exports = {
-  bracketSpacing: false,
+  arrowParens: 'avoid',
   bracketSameLine: true,
+  bracketSpacing: false,
   singleQuote: true,
   trailingComma: 'all',
-  arrowParens: 'avoid',
+
   /**
    * @see https://github.com/trivago/prettier-plugin-sort-imports#apis
    */
